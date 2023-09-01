@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Titanic | Kaggle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script> {#
+				<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">#}
+  </head>
+  <body style="background-image: url('{{ url_for('static', filename='images/titanic.jpg') }}'); background-repeat: no-repeat;  background-attachment: fixed;  background-size: cover;">
+    <div class="container-fluid" style="width: 60%; text-align: center; background-color: rgba(240,248,255,0.66)">
+      <h2 class="pt-5">Titanic - Survival Prediction</h2>
+      <h5 class="mb-3">Fill the form and predict the survival</h5>
+      <p>Created By: <a href="https://instagram.com/itz_me_saadh">
+          <strong>Mohamed Saadh</strong>
+        </a>
+      </p>
+      <!-- Main Input For Receiving Query to our ML -->
+      <div class="container-fluid" style="width: 60%;">
+        <form action="{{ url_for('predict')}}" method="post">
+          <select class="form-select mb-3" type="text" name="Pclass" required="required">
+            <option selected>Ticket class</option>
+            <option value="1">First Class</option>
+            <option value="2">Second Class</option>
+            <option value="3">Third Class</option>
+          </select>
+          <input class="form-control mb-3" type="text" name="Age" placeholder="Age" required="required" />
+          <input class="form-control mb-3" type="text" name="Fare" placeholder="Passenger fare" required="required" />
+          <select class="form-select mb-3" name="Embarked" required="required">
+            <option selected>Port of Embarkation</option>
+            <option value="2">Cherbourg</option>
+            <option value="1">Queenstown</option>
+            <option value="0">Southampton</option>
+          </select>
+          <input class="form-control mb-3" type="text" name="Fmembers" placeholder="No. of family members" required="required" />
+          <select class="form-select mb-3" type="text" name="Sex_male" required="required">
+            <option selected>Male/Female</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+          <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        </form>
+        <br>
+        <br>
+        <div class="pb-5">
+          <div class="alert alert-success" role="alert">
+            {{ prediction_text }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
